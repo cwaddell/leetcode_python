@@ -1,0 +1,23 @@
+class Solution:
+    def checkValidString(self, s: str) -> bool:
+        stack = []
+        astack = []
+        for q, r in enumerate(s):
+            if (r == '('):
+                stack.append(q) ## store index for (
+            elif (r == ')'):
+                if stack: 
+                    stack.pop() ## closed pair ) pop index
+                elif astack: 
+                    astack.pop() ## use wild card so pop index 
+                else: 
+                    return False ## no wildcards to use, not enough (
+            elif (r == '*'): 
+                astack.append(q) ## store wild card index
+        while stack and astack:
+            if stack[-1] < astack[-1]: ## compare indexes
+                stack.pop()
+                astack.pop()
+            else:
+                break
+        return len(stack) == 0
