@@ -1,0 +1,15 @@
+class Solution:
+    def minRemoveToMakeValid(self, s: str) -> str:
+        stack = []
+        indexed_string = list(s)
+        for q, r in enumerate(indexed_string):
+            if (r == '('):
+                stack.append(q) ## start pair (
+            elif (r == ')'):
+                if stack: 
+                    stack.pop() ## closed pair )
+                else: 
+                    indexed_string[q] = '' ## unpaired )
+        while stack:
+            indexed_string[stack.pop()] = '' ## unpaired (
+        return ''.join(indexed_string)
