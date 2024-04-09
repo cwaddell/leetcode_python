@@ -1,0 +1,13 @@
+class Solution:
+    def mostFrequentEven(self, nums: List[int]) -> int:
+            ## most_common when all are common doesn't sort
+            mc = collections.Counter(nums).most_common()
+            min_value = -1
+            last_min = max(nums)
+            max_count = 0
+            for j in mc:
+                if ((j[0] % 2) == 0 or j[0] == 0) and not j[1] < max_count and not j[0] > last_min:
+                    max_count = max(max_count, j[1])
+                    min_value = min(j[0], last_min)
+                    last_min = min_value
+            return min_value
