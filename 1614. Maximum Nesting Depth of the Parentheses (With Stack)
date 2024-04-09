@@ -1,0 +1,13 @@
+class Solution:
+    def maxDepth(self, s: str) -> int:
+        new_s = s.translate({ord(i): None for i in '0123456789+-*/'})
+        count = 0
+        stack = []
+        for j in range(len(new_s)):
+            if (new_s[j] == '('):
+                stack.append(j)
+            else:
+                if (count < len(stack)):
+                    count = len(stack)
+                stack.pop()
+        return count	
