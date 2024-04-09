@@ -1,0 +1,13 @@
+class Solution:
+    def makeGood(self, s: str) -> str:
+        goodString = ""
+        stack = []
+        for i in s:
+            ## https://www.w3schools.com/python/ref_func_ord.asp
+            ## https://docs.python.org/3/howto/unicode.html
+            ## ord("A") - ord("a") == 32
+            if not stack or abs(ord(stack[-1]) - ord(i)) != 32:
+                stack.append(i)
+            else:
+                stack.pop()
+        return goodString.join(stack)
