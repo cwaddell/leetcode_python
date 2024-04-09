@@ -1,0 +1,11 @@
+class Solution:
+    def maxDepth(self, s: str) -> int:
+        new_s = s.translate({ord(i): None for i in '0123456789+-*/'})
+        depth, max_depth = 0, 0
+        for j in range(len(new_s)):
+            if (new_s[j] == '('):
+                depth += 1
+                max_depth = max(depth, max_depth)
+            else:
+                depth -= 1
+        return max_depth
