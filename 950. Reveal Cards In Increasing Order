@@ -1,0 +1,11 @@
+class Solution:
+    def deckRevealedIncreasing(self, deck: List[int]) -> List[int]:
+        deck.sort() ## put cards in ascending order
+        D = len(deck)
+        dq = deque([deck[D - 1]]) ## init dq with highest card
+
+        for i in range(D - 2, -1, -1): ## reverse order deck starting with 2nd highest card
+            dq.rotate() ## reveal card and place at back of deck
+            dq.appendleft(deck[i]) ## reveal card and place at front
+
+        return list(dq)
