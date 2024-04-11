@@ -1,0 +1,17 @@
+class Solution:
+    def findMaximumLength(self, nums: List[int]) -> int:
+        stack = deque([(0, 0, 0)])
+        prefix_sum = 0
+        for num in nums:
+            prefix_sum += num
+
+            while stack and stack[0][0] <= prefix_sum:
+                _, last_prefix_sum, last_dp = stack.popleft()
+                    
+            dp = last_dp + 1
+            last = 2 * prefix_sum - last_prefix_sum
+            while stack and stack[-1][0] >= last:
+                stack.pop()
+            stack.append((last, prefix_sum, dp))
+
+        return dp
