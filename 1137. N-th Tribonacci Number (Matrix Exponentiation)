@@ -21,6 +21,8 @@ class Solution:
     def power(self, n):
         F = [[1, 0, 0], [1, 0, 0], [0, 0, 0]]
         M = [[1, 1, 1], [1, 0, 0], [0, 1, 0]]
+        
+        # Binary exponentiation
         while n > 0:
             if n % 2 == 1:
                 self.matrix_multiply(F, M)
