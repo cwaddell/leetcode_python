@@ -1,0 +1,17 @@
+class Solution:
+    def minFallingPathSum(self, grid: List[List[int]]) -> int:
+        min_sum = second_min_sum = 0
+        min_index = -1
+        for row in grid:
+            current_min = current_second_min = float('inf')
+            current_min_index = -1
+            for j, value in enumerate(row):
+                current_sum = (second_min_sum if j == min_index else min_sum) + value
+                if current_sum < current_min:
+                    current_second_min = current_min
+                    current_min = current_sum
+                    current_min_index = j
+                elif current_sum < current_second_min:
+                    current_second_min = current_sum
+            min_sum, second_min_sum, min_index = current_min, current_second_min, current_min_index
+        return min_sum
